@@ -50,17 +50,18 @@ public class Neuronio {
     }
 
     //    4 valores de entrada em x1,x2,x3,x4
-    public double calculaV(int x1, int x2) {
-        return w0 + w1 * x1 + w2 * x2;
+    public double calculaV(int x1, int x2, int x3, int x4) {
+        return w0 + w1 * x1 + w2 * x2 + w3 * x3 + w4 * x4;
     } //calcula o campo local induzido
 
     // Mudar esta função
-    public int calculaY(int x1, int x2) { //aplica a função
-        double v = calculaV(x1, x2);
+    public double calculaY(int x1, int x2, int x3, int x4) { //aplica a função
+        double v = calculaV(x1, x2, x3, x4);
 
-        if (v >= 0) return 1;
-        return 0;
-//        return 1 / 1+exp(-v)-
+//        if (v >= 0) return 1;
+//        return 0;
+//        return 1 / 1+exp(-v)
+        return (1 / 1 + Math.exp(-v));
     }
 
 
