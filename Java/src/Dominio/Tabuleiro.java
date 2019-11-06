@@ -18,10 +18,10 @@ public class Tabuleiro {
 
     public String[][] lerArqRetMatriz() throws FileNotFoundException {
         String[][] aux = null;
-        int tam = 0;
+        tamanho_matriz = 0;
         Scanner in = new Scanner(new FileReader(nome_Arquivo));
-        tam = in.nextInt();
-        aux = new String[tam][tam];
+        tamanho_matriz = in.nextInt();
+        aux = new String[tamanho_matriz][tamanho_matriz];
         in.close();
         return aux;
     }
@@ -62,10 +62,34 @@ public class Tabuleiro {
             for (int j = 0; j < this.matriz_Tabeuleiro.length; ++j) {
                 System.out.print(this.matriz_Tabeuleiro[i][j] + " ");
             }
-
             System.out.println();
         }
+    }
 
+    public int getQuantPosiVazias(String[][] matrix) {
+        int aux = 0;
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j].equals("0")) {
+                    aux++;
+                }
+            }
+        }
+        return aux;
+    }
+
+    public int getQuantMoedas(String[][] matrix) {
+        int aux = 0;
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j].equals("M")) {
+                    aux++;
+                }
+            }
+        }
+        return aux;
     }
 
 
