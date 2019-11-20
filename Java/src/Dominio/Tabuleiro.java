@@ -92,13 +92,76 @@ public class Tabuleiro {
         return aux;
     }
 
+    public void moverAgente(int _x, int _y) {
+
+        int aux_X = 0;
+        int aux_Y = 0;
+        for (int i = 0; i < matriz_Tabeuleiro.length; i++) {
+            for (int j = 0; j < matriz_Tabeuleiro[0].length; j++) {
+                if (matriz_Tabeuleiro[i][j].equals("E")) {
+                    aux_X = i;
+                    aux_Y = j;
+                }
+            }
+        }
+        matriz_Tabeuleiro[aux_X][aux_Y] = "0";
+        matriz_Tabeuleiro[_x][_y] = "E";
+
+    }
+
+    public String percebCoord(int _x, int _y) {
+        return matriz_Tabeuleiro[_x][_y];
+    }
+
+    public int getAgent_X() {
+        int aux = 0;
+        for (int i = 0; i < matriz_Tabeuleiro.length; i++) {
+            for (int j = 0; j < matriz_Tabeuleiro[0].length; j++) {
+                if (matriz_Tabeuleiro[i][j].equals("E")) {
+                    aux = i;
+                }
+            }
+        }
+
+        return aux;
+
+    }
+
+    public int getAgent_Y() {
+        int aux = 0;
+        for (int i = 0; i < matriz_Tabeuleiro.length; i++) {
+            for (int j = 0; j < matriz_Tabeuleiro[0].length; j++) {
+                if (matriz_Tabeuleiro[i][j].equals("E")) {
+                    aux = j;
+                }
+            }
+        }
+
+        return aux;
+
+    }
+
+    public String[][] getMatriz_Tabeuleiro(){
+        return matriz_Tabeuleiro;
+    }
+
+    public int getTamanho_matriz(){
+        return matriz_Tabeuleiro.length;
+    }
+
 
     public static void main(String[] args) throws IOException {
         System.out.println("Teste ok!!");
         Tabuleiro tab = new Tabuleiro();
         tab.lerArqRetMatriz();
         String[][] matrix = tab.geraMatriz();
+        System.out.println("================");
         tab.printaMatriz();
+        tab.moverAgente(3, 4);
+        System.out.println("================");
+        tab.printaMatriz();
+
+
 
 
     }

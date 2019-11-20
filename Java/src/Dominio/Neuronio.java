@@ -61,12 +61,31 @@ public class Neuronio {
 //        if (v >= 0) return 1;
 //        return 0;
 //        return 1 / 1+exp(-v)
-        return (1 / 1 + Math.exp(-v));
+        return (1 / (1 + Math.exp(-v)));
     }
 
 
     public String toString() {
-        return "w0 = " + w0 + " w1= " + w1 + " w2= " + w2;
+        return "w0= " + w0 + " w1= " + w1 + " w2= " + w2 + " w3= " + w3 + " w4= " + w4;
+    }
+
+    public static void main(String[] args) {
+        Neuronio n1 = new Neuronio();
+        Neuronio n2 = new Neuronio();
+        n1.setW0(1.0);
+        n1.setW2(0.1);
+        n1.setW1(0.1);
+        n1.setW3(0.1);
+        n1.setW4(0.1);
+
+
+        Double result2 = n1.calculaY(0, 1, 2, 1);
+
+        System.out.printf("%.02f", result2);
+        System.out.println();
+        System.out.printf("%.02f", result2);
+        System.out.println();
+        System.out.println(n1.toString());
     }
 }
 
