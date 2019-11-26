@@ -1,6 +1,6 @@
 package Dominio;
 
-public class Neuronio {
+public class Neuronio1cam {
     //Neuronio para 2 entradas
 
     private double w0;  // 5 pesos
@@ -8,6 +8,10 @@ public class Neuronio {
     private double w2;
     private double w3;
     private double w4;
+
+    public Neuronio1cam(){
+
+    }
 
     public double getW0() {
         return w0;
@@ -51,7 +55,7 @@ public class Neuronio {
 
     //    4 valores de entrada em x1,x2,x3,x4
     public double calculaV(int x1, int x2, int x3, int x4) {
-        return w0 + w1 * x1 + w2 * x2 + w3 * x3 + w4 * x4;
+        return w0 + (w1 * x1) + (w2 * x2) + (w3 * x3) + (w4 * x4);
     } //calcula o campo local induzido
 
     // Mudar esta função
@@ -70,16 +74,16 @@ public class Neuronio {
     }
 
     public static void main(String[] args) {
-        Neuronio n1 = new Neuronio();
-        Neuronio n2 = new Neuronio();
+        Neuronio1cam n1 = new Neuronio1cam();
+        Neuronio1cam n2 = new Neuronio1cam();
         n1.setW0(1.0);
-        n1.setW2(0.1);
-        n1.setW1(0.1);
-        n1.setW3(0.1);
-        n1.setW4(0.1);
+        n1.setW2(-0.44456);
+        n1.setW1(0.445345);
+        n1.setW3(0.64474);
+        n1.setW4(-0.232344);
 
 
-        Double result2 = n1.calculaY(0, 1, 2, 1);
+        Double result2 = n1.calculaY(0, 1, 2, 2);
 
         System.out.printf("%.02f", result2);
         System.out.println();

@@ -2,6 +2,9 @@ package Dominio;
 
 import sun.tools.jconsole.Tab;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class Agente {
     private int coord_X;
     private int coord_Y;
@@ -9,36 +12,51 @@ public class Agente {
 //=> para cima, baixo, esquerda e direita.
 
     public Agente() {
-
+        this.coord_X = 0;
+        this.coord_Y = 0;
     }
 
-    public String[] percepcao(Tabuleiro tab) {
+    public String[] percepcao() throws IOException {
         /***
          *  vet[0] = cima
          *  vet[1] = direita
          *  vet[2] = esquerda
          *  vet[3] = baixo
          */
+        Tabuleiro tab = new Tabuleiro();
+        tab.geraMatriz();
 
-        int coordx = 0;
-        int coordy = 0;
+
         String[] vet = new String[4];
-        coordy = tab.getAgent_Y();
-        coordx = tab.getAgent_X();
 
-        if (coordx == 0 && coordy == 0) {
+        tab.moverAgente(tab.getTamanho_matriz() - 1, tab.getTamanho_matriz() - 1);
+        coord_X = tab.getAgent_X();
+        coord_Y = tab.getAgent_Y();
+
+        if (coord_X == 0 && coord_Y == 0) {
             vet[0] = null;
-            vet[1] = tab.percebCoord(coordx, coordy + 1);
+            vet[1] = tab.percebCoord(coord_X, coord_Y + 1);
             vet[2] = null;
-            vet[3] = tab.percebCoord(coordx + 1, coordy);
+            vet[3] = tab.percebCoord(coord_X + 1, coord_Y);
             return vet;
         }
-        if (coordx >= 1 && coordx <= tab.getTamanho_matriz() - 2) {
+        if (coord_X == tab.getTamanho_matriz() - 1 && coord_Y == tab.getTamanho_matriz() - 1) {
+            vet[0] = null;
+            vet[1] = tab.percebCoord(coord_X, coord_Y + 1);
+            vet[2] = null;
+            vet[3] = tab.percebCoord(coord_X + 1, coord_Y);
+            return vet;
+        }
+        return vet;
+    }
 
+    public static void main(String[] args) throws IOException {
+        Agente ag = new Agente();
+        String[] vetor = ag.percepcao();
+        for (int i = 0; i < vetor.length; i++) {
+            System.out.println(vetor[i]);
         }
 
-
-        return vet;
     }
 
 
