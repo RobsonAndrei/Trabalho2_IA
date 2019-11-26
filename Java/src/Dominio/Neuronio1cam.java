@@ -76,6 +76,14 @@ public class Neuronio1cam {
     public static void main(String[] args) {
         Neuronio1cam n1 = new Neuronio1cam();
         Neuronio1cam n2 = new Neuronio1cam();
+        Neuronio1cam n3 = new Neuronio1cam();
+        Neuronio1cam n4 = new Neuronio1cam();
+
+        Neuronio2cam n5  = new Neuronio2cam();
+        Neuronio2cam n6  = new Neuronio2cam();
+        Neuronio2cam n7  = new Neuronio2cam();
+        Neuronio2cam n8  = new Neuronio2cam();
+
         n1.setW0(1.0);
         n1.setW2(-0.44456);
         n1.setW1(0.445345);
