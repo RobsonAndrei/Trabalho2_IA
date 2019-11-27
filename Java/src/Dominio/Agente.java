@@ -4,16 +4,21 @@ import sun.tools.jconsole.Tab;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Agente {
     private int coord_X;
     private int coord_Y;
+    private int totalMoedas;
+    private int pontos;
 //=> Importante o agente ter mapeado os seus movimentos no tabuleiro
 //=> para cima, baixo, esquerda e direita.
 
     public Agente() {
         this.coord_X = 0;
         this.coord_Y = 0;
+        this.totalMoedas = 0;
+        this.pontos = 0;
     }
 
     public String[] percepcao() throws IOException {
@@ -91,11 +96,45 @@ public class Agente {
 
 
         vet[0] = tab.percebCoord(coord_X - 1, coord_Y);
-        vet[1] = tab.percebCoord(coord_X, coord_Y + 1);;
+        vet[1] = tab.percebCoord(coord_X, coord_Y + 1);
         vet[2] = tab.percebCoord(coord_X, coord_Y - 1);
         vet[3] = tab.percebCoord(coord_X + 1, coord_Y);
         return vet;
     }
+
+    public void AlgorGenetico() {
+
+        /***
+         *      ======================
+         *      Pseudocódigo:
+         *      ======================
+         *      Seja S(t) população de cromossomos na geração (t)
+         *      t <== 0
+         *      Inicializar S(t)
+         *      Avaliar S(t)
+         *          Enquanto o critério de parada não for satisfeito FAÇA
+         *          t<== t+1
+         *          Selecionar S(t) apartir de S(t-1)
+         *          Aplicar Crossover sobre S(t)
+         *          Aplicar Motação sobre S(t)
+         *          Avaliar S(t)
+         *          FIM Enquanto
+         */
+        RedeNeural net = new RedeNeural();
+        double[] vetPopulacaoInicial = new double[40];
+        for (int i = 0; i < vetPopulacaoInicial.length; i++) {
+            vetPopulacaoInicial[i] = ThreadLocalRandom.current().nextDouble(-1.0, 1.0);
+        }
+        int geracao = 0;
+
+        for (int i = 0; i < vetPopulacaoInicial.length; i++) {
+            System.out.printf("%.02f", vetPopulacaoInicial[i]);
+            System.out.println();
+        }
+
+
+    }
+
 
     public static void main(String[] args) throws IOException {
         Agente ag = new Agente();
@@ -103,6 +142,8 @@ public class Agente {
         for (int i = 0; i < vetor.length; i++) {
             System.out.println(vetor[i]);
         }
+
+        ag.AlgorGenetico();
 
     }
 

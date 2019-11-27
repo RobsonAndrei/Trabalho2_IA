@@ -141,6 +141,34 @@ public class Tabuleiro {
 
     }
 
+    public int getSaida_X() {
+        int aux = 0;
+        for (int i = 0; i < matriz_Tabeuleiro.length; i++) {
+            for (int j = 0; j < matriz_Tabeuleiro[0].length; j++) {
+                if (matriz_Tabeuleiro[i][j].equals("S")) {
+                    aux = i;
+                }
+            }
+        }
+
+        return aux;
+
+    }
+
+    public int getSaida_Y() {
+        int aux = 0;
+        for (int i = 0; i < matriz_Tabeuleiro.length; i++) {
+            for (int j = 0; j < matriz_Tabeuleiro[0].length; j++) {
+                if (matriz_Tabeuleiro[i][j].equals("S")) {
+                    aux = j;
+                }
+            }
+        }
+
+        return aux;
+
+    }
+
     public String[][] getMatriz_Tabeuleiro(){
         return matriz_Tabeuleiro;
     }
