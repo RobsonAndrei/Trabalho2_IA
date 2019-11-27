@@ -102,6 +102,31 @@ public class Agente {
         return vet;
     }
 
+    //      === Método conversor de vetor de String gerado pela matriz      ===
+    //      === para um vetor de interios que ira ser usado na rede neural  ===
+    public int[] convertVetor(String[] vet) {
+        int[] vetorInt = new int[vet.length];
+        for (int i = 0; i < vet.length; i++) {
+            if (vet[i] == "0") {
+                vetorInt[i] = 0;
+            }
+            if (vet[i] == "1") {
+                vetorInt[i] = 1;
+            }
+            if (vet[i] == "M") {
+                vetorInt[i] = 2;
+            }
+            if (vet[i] == "S") {
+                vetorInt[i] = 3;
+            }
+            if (vet[i] == null) {
+                vetorInt[i] = 4;
+            }
+        }
+
+        return vetorInt;
+    }
+
     public void AlgorGenetico() {
 
         /***
@@ -141,6 +166,12 @@ public class Agente {
         String[] vetor = ag.percepcao();
         for (int i = 0; i < vetor.length; i++) {
             System.out.println(vetor[i]);
+        }
+        System.out.println();
+        int[] vetint = ag.convertVetor(vetor);
+
+        for (int i = 0; i < vetint.length; i++) {
+            System.out.println(vetint[i]);
         }
 
         ag.AlgorGenetico();
