@@ -146,9 +146,10 @@ public class RedeNeural {
         }
 
         net.ajustePesos(vetorPesos);
-        double[] vetExit = net.getSaida(0,2,1,1);
+        double[] vetExit = net.getSaida(0, 1, 1, 3);
         for (int i = 0; i < vetExit.length; i++) {
-            System.out.println(vetExit[i]);
+            System.out.printf("%.03f", vetExit[i]);
+            System.out.println();
         }
 
     }
