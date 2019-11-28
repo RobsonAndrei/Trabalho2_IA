@@ -136,22 +136,6 @@ public class RedeNeural {
         }
     }
 
-    public static void main(String[] args) {
-        RedeNeural net = new RedeNeural();
-        double[] vetorPesos = new double[40];
-//        Vetor que gera números aleatórios de -1.0 à 1.0 que servirão para o Algoritimo Genêtico
 
-        for (int i = 0; i < vetorPesos.length; i++) {
-            vetorPesos[i] = ThreadLocalRandom.current().nextDouble(-1.0, 1.0);
-        }
-
-        net.ajustePesos(vetorPesos);
-        double[] vetExit = net.getSaida(0, 1, 1, 3);
-        for (int i = 0; i < vetExit.length; i++) {
-            System.out.printf("%.03f", vetExit[i]);
-            System.out.println();
-        }
-
-    }
 
 }

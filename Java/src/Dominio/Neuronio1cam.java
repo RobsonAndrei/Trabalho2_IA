@@ -73,31 +73,6 @@ public class Neuronio1cam {
         return "w0= " + w0 + " w1= " + w1 + " w2= " + w2 + " w3= " + w3 + " w4= " + w4;
     }
 
-    public static void main(String[] args) {
-        Neuronio1cam n1 = new Neuronio1cam();
-        Neuronio1cam n2 = new Neuronio1cam();
-        Neuronio1cam n3 = new Neuronio1cam();
-        Neuronio1cam n4 = new Neuronio1cam();
 
-        Neuronio2cam n5  = new Neuronio2cam();
-        Neuronio2cam n6  = new Neuronio2cam();
-        Neuronio2cam n7  = new Neuronio2cam();
-        Neuronio2cam n8  = new Neuronio2cam();
-
-        n1.setW0(1.0);
-        n1.setW2(-0.44456);
-        n1.setW1(0.445345);
-        n1.setW3(0.64474);
-        n1.setW4(-0.232344);
-
-
-        Double result2 = n1.calculaY(0, 1, 2, 2);
-
-        System.out.printf("%.02f", result2);
-        System.out.println();
-        System.out.printf("%.02f", result2);
-        System.out.println();
-        System.out.println(n1.toString());
-    }
 }
 

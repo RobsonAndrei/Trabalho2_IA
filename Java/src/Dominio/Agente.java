@@ -13,6 +13,7 @@ public class Agente {
     private int coord_Y;
     private int totalMoedas;
     private int pontos;
+    private Tabuleiro tab;
 //=> Importante o agente ter mapeado os seus movimentos no tabuleiro
 //=> para cima, baixo, esquerda e direita.
 
@@ -21,6 +22,7 @@ public class Agente {
         this.coord_Y = 0;
         this.totalMoedas = 0;
         this.pontos = 0;
+        this.tab = new Tabuleiro();
     }
 
     public String[] percepcao() throws IOException {
@@ -31,7 +33,7 @@ public class Agente {
          *  vet[3] = baixo
          */
 
-        Tabuleiro tab = new Tabuleiro();
+
         String[][] matriz = tab.geraMatriz();
         String[] vet = new String[4];
         int ultimaPosicao = matriz.length - 1;
@@ -168,6 +170,7 @@ public class Agente {
          *          Avaliar S(t)
          *          FIM Enquanto
          */
+
         RedeNeural net = new RedeNeural();
         double[] vetPopulacaoInicial = new double[40];
         List<double[]> vetPop = new ArrayList<>();
@@ -178,8 +181,40 @@ public class Agente {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < vetPopulacaoInicial.length; j++) {
                 vetPopulacaoInicial[j] = ThreadLocalRandom.current().nextDouble(-1.0, 1.0);
+
             }
             vetPop.add(vetPopulacaoInicial);
+        }
+
+        String[] percTab = percepcao();
+        int[] strToint = convertVetor(percTab);
+
+        for (int i = 0; i < vetPop.size(); i++) {
+
+            net.ajustePesos(vetPop.get(i));
+            double[] vetSaida = net.getSaida(strToint[0], strToint[1], strToint[2], strToint[3]);
+            int melhorSaida = getMaioPosiVetorSaida(vetSaida);
+
+            if (melhorSaida == 0 && strToint[0] == 0) {
+                pontos++;
+                tab.moverAgente(tab.getAgent_X() - 1, tab.getAgent_Y());
+
+            }
+            if (melhorSaida == 1 && strToint[1] == 0) {
+                pontos++;
+                tab.moverAgente(tab.getAgent_X(), tab.getAgent_Y() + 1);
+            }
+            if (melhorSaida == 2 && strToint[2] == 0) {
+                pontos++;
+                tab.moverAgente(tab.getAgent_X(), tab.getAgent_Y() - 1);
+            }
+            if (melhorSaida == 3 && strToint[3] == 0) {
+                pontos++;
+                tab.moverAgente(tab.getAgent_X() + 1, tab.getAgent_Y());
+            } else {
+
+            }
+
         }
 
 
@@ -188,13 +223,16 @@ public class Agente {
 //            System.out.println();
 //        }
 
-        net.ajustePesos(vetPopulacaoInicial);
+        //net.ajustePesos(vetPopulacaoInicial);
         String[] vetPerc = percepcao();
-        int[] strToint = convertVetor(vetPerc);
+
         double[] vetSaida = net.getSaida(strToint[0], strToint[1], strToint[2], strToint[3]);
+
+
+        vetSaida = net.getSaida(strToint[0], strToint[1], strToint[2], strToint[3]);
         System.out.println("========= Vetor de Saida da rede =========");
-        for (int i = 0; i < vetSaida.length; i++) {
-            System.out.println(vetSaida[i]);
+        for (int j = 0; j < vetSaida.length; j++) {
+            System.out.println(vetSaida[j]);
         }
 
         int maioPosiVetorSaida = getMaioPosiVetorSaida(vetSaida);
@@ -230,6 +268,10 @@ public class Agente {
         return maiorint;
     }
 
+    public void moverAgente(int x, int y){
+        tab.moverAgente(x,y);
+    }
+
 
     public static void main(String[] args) throws IOException {
         Agente ag = new Agente();
@@ -246,6 +288,9 @@ public class Agente {
         }
 
         ag.AlgorGenetico();
+
+
+
 
     }
 

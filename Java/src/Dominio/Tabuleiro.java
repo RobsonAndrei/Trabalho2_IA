@@ -169,36 +169,13 @@ public class Tabuleiro {
 
     }
 
-    public String[][] getMatriz_Tabeuleiro(){
+    public String[][] getMatriz_Tabeuleiro() {
         return matriz_Tabeuleiro;
     }
 
-    public int getTamanho_matriz(){
+    public int getTamanho_matriz() {
         return matriz_Tabeuleiro.length;
     }
 
 
-    public static void main(String[] args) throws IOException {
-        System.out.println("Teste ok!!");
-        Tabuleiro tab = new Tabuleiro();
-        tab.lerArqRetMatriz();
-        String[][] matrix = tab.geraMatriz();
-
-
-
-        System.out.println("================");
-        tab.printaMatriz();
-        System.out.println();
-        System.out.println(tab.getAgent_Y());
-        System.out.println(tab.getAgent_X());
-        System.out.println();
-        tab.moverAgente(3, 4);
-        System.out.println("================");
-        tab.printaMatriz();
-
-
-
-
-
-    }
 }
